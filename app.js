@@ -1,7 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+const doctor = require('./routes/doctor');
 
 const app = express();
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
+
+app.use('/api/doctor', doctor);
+
 
 const URI = 'mongodb+srv://root:12345@cluster0.vtpki.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(URI, {
@@ -10,17 +19,12 @@ mongoose.connect(URI, {
 }).then(() => console.log('Connected'))
 .catch(err => console.log(`Error: \n ${err}`));
 
-
-app.get('/', (req, res) => {
-    console.log('Hello, world!');
-    res.json({
-        message: 'Hello, World!'
-    });
-});
-
 const port = process.env.PORT || 3000;
 
 
 app.listen(port, () => {
     console.log(`Listen on port ${port}`);
 });
+
+
+
