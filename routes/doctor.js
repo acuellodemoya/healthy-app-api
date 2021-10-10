@@ -1,8 +1,6 @@
 const express = require('express');
 const { crearDoctor, listarDoctores, actualizarDoctor, eliminarDoctor } = require('../functions/doctor');
 
-
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -21,7 +19,8 @@ router.post('/', (req, res) => {
 
     resultado.then(user => {
         res.json({
-            nombres: user.nombres
+            message: "Doctor creado con exito",
+            user
         })
     }).catch(err => res.json(err));
 });
@@ -32,7 +31,10 @@ router.put('/:email', (req, res) => {
     let resultado = actualizarDoctor(email, body);
 
     resultado.then(user => {
-        res.json(user)
+        res.json({
+            message: "doctor modificado con exito",
+            user
+        })
     }).catch(err => res.json(err));
 });
 
@@ -41,7 +43,7 @@ router.delete('/:email', (req, res) => {
     let resultado = eliminarDoctor(email);
     resultado.then(user => {
         res.json({
-            message: 'Eliminado con exito',
+            message: 'Doctor eliminado con exito',
             user
         });
     }).catch(err => res.json(err));

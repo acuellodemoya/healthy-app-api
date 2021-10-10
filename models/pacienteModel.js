@@ -22,7 +22,4 @@ const pacienteSchema = mongoose.Schema({
     }
 });
 
-module.exports = {
-    pacienteSchema,
-    Paciente: mongoose.model('Paciente', pacienteSchema)
-};
+module.exports = mongoose.model('Paciente', pacienteSchema);
