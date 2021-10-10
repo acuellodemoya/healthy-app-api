@@ -48,8 +48,8 @@ router.delete('/:id', (req, res) => {
         res.json({
             message: "Historia eliminada con exito",
             historia
-        }).catch(err => res.json(err));
-    })
+        });
+    }).catch(err => res.json(err));
 });
 
 module.exports = router;
