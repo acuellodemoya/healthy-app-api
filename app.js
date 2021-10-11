@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+cors = require('cors');
 
 const doctor = require('./routes/doctor');
 const paciente = require('./routes/paciente');
@@ -9,6 +9,7 @@ const historia = require('./routes/historia');
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(cors());
 
 
 app.use('/api/doctor', doctor);
