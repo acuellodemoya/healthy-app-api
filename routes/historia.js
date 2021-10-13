@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
     }).catch(err => res.json(err));
 });
 
-router.get('/listar/:email', async (req, res) => {
+router.get('/:email', async (req, res) => {
     let email = req.params.email;
     let paciente = await Paciente.findOne({"email": email})
     let resultado = listarHistoria(paciente);

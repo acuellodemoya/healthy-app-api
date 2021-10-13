@@ -20,6 +20,10 @@ const historialSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    creado: {
+        type: Date,
+        default: new Date()
+    },
     estado: {
         type: Boolean,
         default: true
