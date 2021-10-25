@@ -1,9 +1,10 @@
 const express = require('express');
 const { crearDoctor, listarDoctores, actualizarDoctor, eliminarDoctor } = require('../functions/doctor');
+const validarToken = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', validarToken, (req, res) => {
     let resultado = listarDoctores();
 
     resultado.then(users =>{
@@ -25,7 +26,7 @@ router.post('/', (req, res) => {
     }).catch(err => res.json(err));
 });
 
-router.put('/:email', (req, res) => {
+router.put('/:email', validarToken, (req, res) => {
     let email = req.params.email;
     let body = req.body;
     let resultado = actualizarDoctor(email, body);
@@ -38,7 +39,7 @@ router.put('/:email', (req, res) => {
     }).catch(err => res.json(err));
 });
 
-router.delete('/:email', (req, res) => {
+router.delete('/:email', validarToken, (req, res) => {
     let email = req.params.email;
     let resultado = eliminarDoctor(email);
     resultado.then(user => {

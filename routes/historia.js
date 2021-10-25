@@ -1,11 +1,12 @@
 const express = require('express');
 const { crearHistoria, listarHistoria, actualizarHistoria, eliminarHistoria } = require('../functions/historia');
 const Paciente = require('../models/pacienteModel');
+const validarToken = require('../middlewares/auth');
 
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', validarToken, (req, res) => {
     let body = req.body;
     let resultado = crearHistoria(body);
 
@@ -17,7 +18,7 @@ router.post('/', (req, res) => {
     }).catch(err => res.json(err));
 });
 
-router.get('/:email', async (req, res) => {
+router.get('/:email', validarToken, async (req, res) => {
     let email = req.params.email;
     let paciente = await Paciente.findOne({"email": email})
     let resultado = listarHistoria(paciente);
@@ -27,7 +28,7 @@ router.get('/:email', async (req, res) => {
     }).catch(err => res.json(err));
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validarToken, (req, res) => {
     let id = req.params.id;
     let body = req.body;
     let resultado = actualizarHistoria(id, body);
@@ -40,7 +41,7 @@ router.put('/:id', (req, res) => {
     }).catch(err => res.json(err));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validarToken, (req, res) => {
     let id = req.params.id;
     let resultado = eliminarHistoria(id);
 

@@ -1,9 +1,10 @@
 const express = require('express');
 const { crearPaciente, listarPaciente, actualizarPaciente, eliminarPaciente } = require('../functions/paciente');
+const validarToken = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', validarToken, (req, res) => {
     const body = req.body;
 
     let resultado = crearPaciente(body);
@@ -18,7 +19,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
+router.get('/', validarToken, (req, res) => {
     let resultado = listarPaciente();
     resultado.then(users => {
         res.json(users);
@@ -27,7 +28,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.put('/:email', (req, res) => {
+router.put('/:email', validarToken, (req, res) => {
     let email = req.params.email;
     let body = req.body;
     let resultado = actualizarPaciente(email, body);
@@ -40,7 +41,7 @@ router.put('/:email', (req, res) => {
     }).catch(err => res.json(err));
 });
 
-router.delete('/:email', (req, res) => {
+router.delete('/:email', validarToken, (req, res) => {
     let email = req.params.email;
     let resultado = eliminarPaciente(email);
     resultado.then(user => {
