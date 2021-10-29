@@ -16,6 +16,21 @@ const pacienteSchema = mongoose.Schema({
     telefono: {
         type: String
     },
+    fecha_nacimiento: {
+        type: Date,
+        required: true
+    },
+    sexo: {
+        type: String,
+    },
+    tipo_sangre: {
+        type: String,
+        required: true
+    },
+    tipo_seguro: {
+        type: String,
+        required: true
+    },
     estado: {
         type: Boolean,
         default: true

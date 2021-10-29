@@ -5,7 +5,11 @@ const crearPaciente = async (body) => {
         nombres: body.nombres,
         apellidos: body.apellidos,
         email: body.email,
-        telefono: body.telefono
+        telefono: body.telefono,
+        fecha_nacimiento: body.fecha_nacimiento,
+        sexo: body.sexo,
+        tipo_sangre: body.tipo_sangre,
+        tipo_seguro: body.tipo_seguro
     });
     return await paciente.save();
 };

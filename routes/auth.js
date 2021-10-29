@@ -13,11 +13,10 @@ router.post('/', (req, res) => {
         .then(data => {
             if(data){
                 const passwordValid = bcrypt.compareSync(body.password, data.password);
-                if(!passwordValid) return res.statu(400).json({message: 'Usuario o contraseña invalido'});
+                if(!passwordValid) return res.status(400).json({message: 'Usuario o contraseña invalido'});
                 const token = jwt.sign({
                     doctor: {_id: data._id, email: data.email}
                 }, 'SECRET', {expiresIn: '24h'});
-
                 res.json({
                     doctor: {_id: data._id, email: data.email},
                     message: 'Validado con Exito!',
