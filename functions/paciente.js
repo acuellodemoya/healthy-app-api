@@ -25,6 +25,10 @@ const actualizarPaciente = async (email, body) => {
             nombres: body.nombres,
             apellidos: body.apellidos,
             telefono: body.telefono,
+            fecha_nacimiento: body.fecha_nacimiento,
+            sexo: body.sexo,
+            tipo_sangre: body.tipo_sangre,
+            tipo_seguro: body.tipo_seguro
         }
     }, {new: true});
 
