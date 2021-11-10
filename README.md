@@ -1,7 +1,8 @@
 # healthy App API
 ---
 Para correr la app es necesario ejercutar el comando ```npm i``` para descargar las dependencias.
-
+Luego, es necesatrio utilizar el comando ```npm start```, si no se han ambiado las variables de entorno, este
+deberia ejecutarse en el puerto 3001
 ## Manual
 ---
 ### Rutas
